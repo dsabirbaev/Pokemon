@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <link rel="icon" href="./assets/icons/like.svg">
+    <!-- CDN Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- CSS style -->
+    <link rel="stylesheet" href="/dist/output.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="overflow-x-hidden">
+    <div class="wrapper-modal  hidden grid place-content-end bg-[rgba(0,0,0,0.30)] backdrop-filter-[10px] w-screen h-screen backdrop-blur-lg fixed z-30">
+        <div class="modal-content w-[536px] h-screen overflow-auto pb-[30px] bg-[#FFEDA9]">
+           <div class="p-[30px]">
+                <img id="close" class="cursor-pointer" title="back" src="./assets/icons/back.svg" alt="back">
+           </div>
+           <div class="modal-body flex flex-col items-center justify-center gap-[50px]">
+                
+           </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container mx-auto px-5">
+            <div class="wrapper flex items-start justify-between pt-[50px] pb-[70px]">
+                <span></span>
+                <img title="Pokemon" src="./assets/images/logo.png" alt="logo">
+                <button id="open_modal"><img title="card" src="./assets/icons/like.svg" alt="like"></button>
+            </div>  
+        </div>
+    </header>
+    <main>
+        <section id="main-card">
+            <div class="container mx-auto px-5">
+                <div class="wrapper">
+                    <div class="flex items-center justify-around text-[24px]">
+                        <select id="category" class="w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
+                            <option selected disabled>Gross</option>
+                        </select>
+                        <div class="flex items-center justify-between gap-x-1 w-[300px] h-[60px] p-[16px] bg-white overflow-hidden outline-none rounded-[15px] border-[2px] border-black">
+                            <input id="search_pokemon" type="text" placeholder="Search" class="w-full outline-none placeholder-black">
+                            <img src="./assets/icons/lupa.svg" alt="lupa">
+                        </div>
+                        <select id="sort_letter" class="w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
+                            <option selected disabled>Aa-Zz</option>
+                        </select>
+                        <button class="w-[200px] h-[60px] outline-none rounded-[15px] border-[2px] border-black bg-white">Button</button>
+                    </div>
+
+                    <div class="pokemon-wrapper grid grid-cols-4 gap-[30px] mt-[100px]">
+                        <!-- <div class="w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black">
+                            <div class="border-b-2 border-black flex items-center justify-center pt-[30px] pb-[68px]">
+                                <img title="Pokemon" src="./assets/images/pokemon.png" alt="pokemon">
+                            </div>
+                            <div class="py-5 px-[30px] text-[24px]">
+                                <div class="flex justify-between">
+                                    <p>Pokemons</p> <img src="./assets/icons/like-card.svg" alt="like" class="cursor-pointer">
+                                </div>
+                                <p class="text-[20px] font-medium mb-[25px]">Grass, Poison</p>
+                                <div>
+                                    <span>6.9 kg</span> <span>99 age</span>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="./js/dp.js"></script>
+<script src="./js/utils.js"></script>
+<script src="./js/script.js"></script>
+</html>
