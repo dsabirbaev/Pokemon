@@ -69,6 +69,29 @@ $("#category").addEventListener('change', (e) => {
 })
 
 
+
+//////////// select sort to abc letters
+
+$("#sort_letter").addEventListener('change', (e) => {
+
+    if (e.target.value === 'Aa') {
+        $(".pokemon-wrapper").innerHTML = "";
+        let res = data.sort((a, b) => {
+            if(a.name < b.name) return -1;
+        });
+        renderAllPokemons(res);
+    }
+
+    if (e.target.value === 'Zz') {
+        $(".pokemon-wrapper").innerHTML = "";
+        let res = data.sort((a, b) => {
+            if(a.name > b.name) return -1;
+        });
+        renderAllPokemons(res);
+    }
+})
+
+
 //////////////// Search ///////////
 
 $("#search_pokemon").addEventListener('keyup', (e) => {
@@ -106,7 +129,7 @@ $("#open_modal").addEventListener('click', (e) => {
 
 
 function getAllLocalStorageKeys() {
-    var keys = [];
+    let keys = [];
     for (var i = 0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
         keys.push(key);
@@ -114,18 +137,13 @@ function getAllLocalStorageKeys() {
     return keys;
 }
 
-
 function renderModal() {
-
-    var keys = getAllLocalStorageKeys();
-    
-
+    let keys = getAllLocalStorageKeys();
     let modalResult = "";
     keys.forEach(key => {
-        var item = JSON.parse(localStorage.getItem(key));
-
+        let item = JSON.parse(localStorage.getItem(key));
         modalResult += `
-        <div class="pokemon_card w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black">
+        <div class="pokemon_card w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black" data-card="${item.id}">
             <div class="border-b-2 border-black flex items-center justify-center pt-[30px] pb-[68px]">
                 <img title="Pokemon" src="${item.img}" alt="pokemon">
             </div>
@@ -142,11 +160,11 @@ function renderModal() {
     `
 
     })
-    
+
     $(".modal-body").innerHTML = modalResult;
 
     if (keys.length === 0) {
-        $(".modal-body").innerHTML = `<h1> Empty</h1>`
+        $(".modal-body").innerHTML = `<h1 class="text-2xl text-red-700"> Empty </h1>`
     }
 
 }
@@ -156,7 +174,7 @@ function renderModal() {
 
 $("#close").addEventListener('click', () => {
     $(".wrapper-modal").classList.add('hidden');
-    document.body.style.cssText = "overflow: auto;"  /// remove stop scroll body
+    document.body.style.cssText = "overflow: auto;" /// remove stop scroll body
 })
 
 
@@ -164,7 +182,7 @@ $("#close").addEventListener('click', () => {
 
 $(".modal-body").addEventListener('click', (e) => {
     if (e.target.classList.contains('remove_card')) {
-        const pokemonID = e.target.parentNode.parentNode.parentNode.getAttribute('data-pokemon');
+        const pokemonID = e.target.parentNode.parentNode.parentNode.getAttribute('data-card');
         console.log(pokemonID)
         // const result = findElement(data, pokemonID)[0];
         // localStorage.setItem(`${Date.now()}`, JSON.stringify(result));
