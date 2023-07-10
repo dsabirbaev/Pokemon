@@ -10,3 +10,15 @@ body{
     font-style: normal;
     font-weight: 700;
 }
+
+
+
+
+
+.save_card:hover #card_like{
+    fill: red;
+}
+
+.remove_card:hover path{
+    fill: green;
+}
