@@ -30,10 +30,10 @@
 
     <header>
         <div class="container mx-auto px-5">
-            <div class="wrapper flex items-start justify-between pt-[50px] pb-[70px]">
+            <div class="wrapper flex flex-col md:flex-row items-end md:items-start md:justify-between pt-[50px] pb-[70px]">
                 <span></span>
                 <img title="Pokemon" src="./assets/images/logo.png" alt="logo">
-                <button id="open_modal"><img title="card" src="./assets/icons/like.svg" alt="like"></button>
+                <button id="open_modal" class="order-[-1] md:order-[1]"> <img title="card" src="./assets/icons/like.svg" alt="like"></button>
             </div>  
         </div>
     </header>
@@ -41,37 +41,24 @@
         <section id="main-card">
             <div class="container mx-auto px-5">
                 <div class="wrapper">
-                    <div class="flex items-center justify-around text-[24px]">
-                        <select id="category" class="w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
+                    <div class="flex items-center justify-center md:justify-around flex-col md:flex-row gap-5 md:gap-2 text-[20px] md:text-[24px]">
+                        <select id="category" class="w-[80%] md:w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
                             <option selected disabled>Gross</option>
                         </select>
-                        <div class="flex items-center justify-between gap-x-1 w-[300px] h-[60px] p-[16px] bg-white overflow-hidden outline-none rounded-[15px] border-[2px] border-black">
+                        <div class="flex items-center justify-between gap-x-1 w-[80%] md:w-[300px] h-[60px] p-[16px] bg-white overflow-hidden outline-none rounded-[15px] border-[2px] border-black">
                             <input id="search_pokemon" type="text" placeholder="Search" class="w-full outline-none placeholder-black">
                             <img src="./assets/icons/lupa.svg" alt="lupa">
                         </div>
-                        <select  id="sort_letter" class="w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
+                        <select  id="sort_letter" class="w-[80%] md:w-[260px] h-[60px] outline-none rounded-[15px] border-[2px] border-black cursor-pointer">
                             <option disabled selected>Aa-Zz</option>
                             <option value="Aa">Aa</option>
                             <option value="Zz">Zz</option>
                         </select>
-                        <button class="w-[200px] h-[60px] outline-none rounded-[15px] border-[2px] border-black bg-white">Button</button>
+                        <button class="w-[80%]  md:w-[200px] h-[60px] outline-none rounded-[15px] border-[2px] border-black bg-white">Button</button>
                     </div>
 
-                    <div class="pokemon-wrapper grid grid-cols-4 gap-[30px] mt-[100px]">
-                        <!-- <div class="w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black">
-                            <div class="border-b-2 border-black flex items-center justify-center pt-[30px] pb-[68px]">
-                                <img title="Pokemon" src="./assets/images/pokemon.png" alt="pokemon">
-                            </div>
-                            <div class="py-5 px-[30px] text-[24px]">
-                                <div class="flex justify-between">
-                                    <p>Pokemons</p> <img src="./assets/icons/like-card.svg" alt="like" class="cursor-pointer">
-                                </div>
-                                <p class="text-[20px] font-medium mb-[25px]">Grass, Poison</p>
-                                <div>
-                                    <span>6.9 kg</span> <span>99 age</span>
-                                </div>
-                            </div>
-                        </div> -->
+                    <div class="pokemon-wrapper grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4  place-items-center lg:place-items-start  gap-[30px]  mt-[50px] lg:mt-[100px]">
+                        
                         
                     </div>
                 </div>
