@@ -110,12 +110,18 @@ function findElement(data, id) {
 
     return data.filter(item => item.id === +id);
 }
+let cards = [];
+
+function saveToLocalStorage() {
+    localStorage.setItem('cards', JSON.stringify(cards))
+}
 
 $(".pokemon-wrapper").addEventListener('click', (e) => {
     if (e.target.classList.contains('save_card')) {
         const pokemonID = e.target.parentNode.parentNode.parentNode.getAttribute('data-pokemon');
         const result = findElement(data, pokemonID)[0];
-        localStorage.setItem(`${Date.now()}`, JSON.stringify(result));
+        cards.push(result);
+        saveToLocalStorage();
     }
 })
 
@@ -125,6 +131,7 @@ $("#open_modal").addEventListener('click', (e) => {
     $(".wrapper-modal").classList.toggle('hidden');
     document.body.style.cssText = "overflow: hidden;" /// stop scroll body
     renderModal();
+  
 })
 
 
@@ -138,22 +145,22 @@ function getAllLocalStorageKeys() {
 }
 
 function renderModal() {
-    let keys = getAllLocalStorageKeys();
     let modalResult = "";
-    keys.forEach(key => {
-        let item = JSON.parse(localStorage.getItem(key));
+    const cards = JSON.parse(localStorage.getItem('cards'))
+
+    cards.forEach(card => {
         modalResult += `
-        <div class="pokemon_card w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black" data-card="${item.id}">
+        <div class="pokemon_card w-[307px] min-h-[423px] bg-white rounded-[20px] border-2 border-black" data-card="${card.id}">
             <div class="border-b-2 border-black flex items-center justify-center pt-[30px] pb-[68px]">
-                <img title="Pokemon" src="${item.img}" alt="pokemon">
+                <img title="Pokemon" src="${card.img}" alt="pokemon">
             </div>
             <div class="py-5 px-[30px] text-[24px]">
                 <div class="flex justify-between">
-                    <p>${item.name}</p> <img src="./assets/icons/rubbish.svg" alt="rubbish" class="remove_card cursor-pointer">
+                    <p>${card.name}</p> <img src="./assets/icons/rubbish.svg" alt="rubbish" class="remove_card cursor-pointer">
                 </div>
-                <p class="text-[20px] font-medium mb-[25px]">${item.type}</p>
+                <p class="text-[20px] font-medium mb-[25px]">${card.type}</p>
                 <div>
-                    <span class="mr-[5px]">${item.weight}</span> <span>${item.height}</span>
+                    <span class="mr-[5px]">${card.weight}</span> <span>${card.height}</span>
                 </div>
             </div>
         </div>
@@ -163,7 +170,7 @@ function renderModal() {
 
     $(".modal-body").innerHTML = modalResult;
 
-    if (keys.length === 0) {
+    if (cards.length === 0) {
         $(".modal-body").innerHTML = `<h1 class="text-2xl text-red-700"> Empty </h1>`
     }
 
@@ -182,9 +189,11 @@ $("#close").addEventListener('click', () => {
 
 $(".modal-body").addEventListener('click', (e) => {
     if (e.target.classList.contains('remove_card')) {
+        const parenNode = e.target.closest('.pokemon_card')
         const pokemonID = e.target.parentNode.parentNode.parentNode.getAttribute('data-card');
-        console.log(pokemonID)
-        // const result = findElement(data, pokemonID)[0];
-        // localStorage.setItem(`${Date.now()}`, JSON.stringify(result));
+        
+        cards = cards.filter(card => card.id !== +pokemonID)
+        parenNode.remove()
+        saveToLocalStorage();
     }
 })
