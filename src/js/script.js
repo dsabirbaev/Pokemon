@@ -113,6 +113,8 @@ function findElement(data, id) {
 
     return data.filter(item => item.id === +id);
 }
+
+
 let cards = [];
 
 function saveToLocalStorage() {
@@ -138,14 +140,6 @@ $("#open_modal").addEventListener('click', (e) => {
 })
 
 
-function getAllLocalStorageKeys() {
-    let keys = [];
-    for (var i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        keys.push(key);
-    }
-    return keys;
-}
 
 function renderModal() {
     let modalResult = "";
